@@ -24,6 +24,7 @@ setup(
         'console_scripts': [
             'vehicle_brain = autonomous_driving_pkg.vehicle_brain:main',
             'sensor_publisher = autonomous_driving_pkg.sensor_publisher:main'
+            'actuator_controller = autonomous_driving_pkg.actuator_controller:main'
         ],
     },
 )
