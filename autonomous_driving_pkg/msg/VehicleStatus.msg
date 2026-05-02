@@ -1,1 +1,4 @@
-
+float32 speed
+float32 steering_angle
+float32 obstacle_distance
+bool is_emergency_active
