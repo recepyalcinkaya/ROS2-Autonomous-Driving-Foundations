@@ -1,1 +1,4 @@
-
+bool confirm_stop    # İsteği gönderen (Beyin): Dur emri veriyor mu?
+---
+bool is_stopped      # Yanıt veren (Aktüatör): Durma işlemi başarılı mı?
+string message       # Ek bilgi (Örn: "ABS Devreye Girdi")
