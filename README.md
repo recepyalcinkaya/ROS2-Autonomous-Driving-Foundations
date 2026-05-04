@@ -15,7 +15,7 @@ This repository serves as a foundational software architecture for Autonomous Dr
 In the modern automotive and defense industries, a self-driving car is not a single script. It is a complex network of independent micro-systems (Cameras, LiDARs, Path Planners, Motor Controllers) running simultaneously. **ROS 2** is the industry-standard middleware that allows these systems to communicate securely, in real-time, and without crashing the entire vehicle if one single module fails. It provides the robust Publish/Subscribe architecture required for mission-critical autonomous navigation.
 
 ---
-
+ 
 ## 🏗️ System Architecture & Features
 This project simulates a complete end-to-end autonomous driving pipeline, transitioning theoretical algorithms into a node-based ecosystem. The following features are being implemented:
 
