@@ -7,18 +7,23 @@ class VehicleBrain(Node):
     def __init__(self):
         super().__init__('vehicle_brain_node')
         
-        # Sensörü dinlemek için Subscriber
-        self.subscription = self.create_subscription(Float32, 'obstacle_distance', self.distance_callback, 10)
+        # 1. Parametreyi tanımla ve varsayılan bir değer ata (yaml okunamazsa 2.0 kullanır)
+        self.declare_parameter('aeb_danger_distance', 2.0)
         
-        # Acil fren servisi için Client (Müşteri)
+        self.subscription = self.create_subscription(Float32, 'obstacle_distance', self.distance_callback, 10)
         self.cli = self.create_client(EmergencyStop, 'emergency_stop')
         
         self.get_logger().info('🧠 Beyin Aktif: Sensör verileri analiz ediliyor...')
 
     def distance_callback(self, msg):
         distance = msg.data
-        if distance < 2.0: # 2 metreden yakınsa
-            self.get_logger().error(f'⚠️ TEHLİKE! Engel Mesafesi: {distance:.2f}m. Fren Servisi Çağrılıyor!')
+        
+        # 2. Parametrenin anlık güncel değerini sistemden çek
+        danger_threshold = self.get_parameter('aeb_danger_distance').get_parameter_value().double_value
+        
+        # 3. Kıyaslamayı bu dinamik değere göre yap
+        if distance < danger_threshold:
+            self.get_logger().error(f'⚠️ TEHLİKE! Engel Mesafesi: {distance:.2f}m. (Sınır: {danger_threshold}m) Fren Servisi Çağrılıyor!')
             self.call_emergency_stop()
 
     def call_emergency_stop(self):
