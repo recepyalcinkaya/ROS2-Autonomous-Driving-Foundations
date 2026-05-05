@@ -1,1 +1,4 @@
-
+/central_processing_unit:
+  ros__parameters:
+    aeb_danger_distance: 3.5    # Acil frenin devreye gireceği mesafe (metre)
+    max_speed_limit: 50.0       # Aracın maksimum hızı (km/h)
